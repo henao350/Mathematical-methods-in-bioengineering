@@ -4,8 +4,8 @@ def f(z):
     return (1/sqrt(2*pi))*exp(-z**2/2)
 
 N = 1000000
-z_start = -10
-z_end = 0.20
+z_start = -2
+z_end = 2
 delta_z = (z_end - z_start)/N
 
 sum = 0
