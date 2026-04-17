@@ -86,29 +86,30 @@ Test \# 2
 \vspace{-4em}
 
 \begin{enumerate}[label=\textbf{P\arabic*.},itemsep=1em]
-  \item {\bf [5 points]} Base yourself upon
-  \begin{center}\small \verb+2-Tests2026/260417-test2-Riemann_sums_Python/Riemann-sum.py+
+  \item Referencing the script
+  \begin{center}\small \verb+2-Tests2026/260417-test2-Riemann_sums_Python/Riemann-sum.py+,
   \end{center}
-  Change the code so that it approximates
+  modify the code to approximate the definite integral:
   $$
-    \int_{-1}^{13} 3x^4 - \frac{x^7}{8} + 10
+    \int_{-1}^{13} \left (3x^4 - \frac{x^7}{8} + 10 \right ) \dd x
   $$
-  using Riemann sums partitioning the domain, respectively, into
+  using Riemann sums
+  with a partition of the domain into $N$ equal sub-intervals. Perform the calculation for:
   \begin{enumerate}
-    \item $N=20$ cells
-    \item $N=200$ cells
-    \item $N=20000$ cells
-    \item $N=2000000$ cells
+    \item $N=20$
+    \item $N=200$
+    \item $N=20000$
+    \item $N=2000000$
   \end{enumerate}
-  The Riemann sum must be computed choosing always the right-end point of each cell to estimate the height of the corresponding rectangle in the picture of the approximation of the area below the curve.
+  In each case, use the \textbf{right-end point} of each sub-interval to determine the height of the rectangles.
   For each value of $N$, report:
   \begin{itemize}
-   \item the approximated value using Riemann sums,
-   \item the real value using the indefinite integral
+   \item The \textbf{approximated value} obtained from your Python script.
+   \item The \textbf{exact value} calculated using the fundamental theorem of calculus with the primitive:
   $$
-    F(x):= \int \left( 3x^4 - \frac{x^7}{8} + 10 \right) dx = \frac{3}{5}x^5 - \frac{1}{64}x^8 + 10x + C,
+    F(x):= \frac{3}{5}x^5 - \frac{1}{64}x^8 + 10x
   $$
-  \item and the relative error of the approximation (expressed as a percentage).
+  \item The \textbf{relative error} of the approximation, expressed as a percentage.
   \end{itemize}
 
 \end{enumerate}
