@@ -1,0 +1,117 @@
+\documentclass[11pt,svgnames,spanish,oneside]{amsart}
+
+\usepackage{hyperref}
+%\hypersetup{colorlinks}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\usepackage{bbm,wasysym,stmaryrd,color,colortbl}
+\usepackage{multimedia}
+\usepackage{cancel}
+\usepackage[normalem]{ulem}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm,headsep=10pt]{geometry}
+\usepackage{eso-pic}
+\usepackage{url}
+
+% Les principaux ensembles
+\newcommand\N{{\mathbb N}}
+\newcommand\R{{\mathbb R}}
+\newcommand\T{{\mathbb T}}
+\newcommand\C{{\mathbb C}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\Pp{{\mathbb P}}
+\newcommand\Ee{{\mathbb E}}
+\newcommand{\indiq}{{\bf 1}}
+\usepackage{framed}
+\usepackage{xcolor}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+\usepackage{fancyhdr}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%      Document     %%%%%%%%%%%%%%%
+
+% Para escribir las soluciones
+\usepackage{versions}
+\includeversion{solution}
+%\excludeversion{solution}
+
+
+\let\epsilon\varepsilon
+\newenvironment{mysolution}{%
+  \solution\color{blue}Sol:
+}{%
+  \endsolution
+}
+
+\newcommand{\dd}{\, \text{d}}
+
+
+\begin{document}
+
+\title{Métodos matemáticos en bioingeniería\\[0.2em]
+Test \# 2
+}
+\date{17 de abril, 2026}
+\author{Duvan Henao}
+
+%\date{\today}
+
+%\pagestyle{plain}
+
+\maketitle
+
+\thispagestyle{fancy}
+\lhead{\includegraphics[width=0.28\textwidth]{logo-UOH}}
+\rhead{Primer semestre de 2026}
+
+\begin{center}
+\end{center}
+
+%\cfoot{}
+
+\vspace{-4em}
+
+\begin{enumerate}[label=\textbf{P\arabic*.},itemsep=1em]
+  \item {\bf [5 points]} Base yourself upon
+  \begin{center}\small \verb+2-Tests2026/260417-test2-Riemann_sums_Python/Riemann-sum.py+
+  \end{center}
+  Change the code so that it approximates
+  $$
+    \int_{-1}^{13} 3x^4 - \frac{x^7}{8} + 10
+  $$
+  using Riemann sums partitioning the domain, respectively, into
+  \begin{enumerate}
+    \item $N=20$ cells
+    \item $N=200$ cells
+    \item $N=20000$ cells
+    \item $N=2000000$ cells
+  \end{enumerate}
+  The Riemann sum must be computed choosing always the right-end point of each cell to estimate the height of the corresponding rectangle in the picture of the approximation of the area below the curve.
+  For each value of $N$, report:
+  \begin{itemize}
+   \item the approximated value using Riemann sums,
+   \item the real value using the indefinite integral
+  $$
+    F(x):= \int \left( 3x^4 - \frac{x^7}{8} + 10 \right) dx = \frac{3}{5}x^5 - \frac{1}{64}x^8 + 10x + C,
+  $$
+  \item and the relative error of the approximation (expressed as a percentage).
+  \end{itemize}
+
+\end{enumerate}
+
+
+\end{document}
