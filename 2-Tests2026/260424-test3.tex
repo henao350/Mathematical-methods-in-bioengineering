@@ -1,0 +1,93 @@
+\documentclass[11pt,svgnames,spanish,oneside]{amsart}
+
+\usepackage{hyperref}
+%\hypersetup{colorlinks}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\usepackage{bbm,wasysym,stmaryrd,color,colortbl}
+\usepackage{multimedia}
+\usepackage{cancel}
+\usepackage[normalem]{ulem}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm,headsep=10pt]{geometry}
+\usepackage{eso-pic}
+\usepackage{url}
+
+% Les principaux ensembles
+\newcommand\N{{\mathbb N}}
+\newcommand\R{{\mathbb R}}
+\newcommand\T{{\mathbb T}}
+\newcommand\C{{\mathbb C}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\Pp{{\mathbb P}}
+\newcommand\Ee{{\mathbb E}}
+\newcommand{\indiq}{{\bf 1}}
+\usepackage{framed}
+\usepackage{xcolor}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+\usepackage{fancyhdr}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%      Document      %%%%%%%%%%%%%%%
+
+% Para escribir las soluciones
+\usepackage{versions}
+\includeversion{solution}
+% \excludeversion{solution}
+
+
+\let\epsilon\varepsilon
+\newenvironment{mysolution}{%
+  \solution\color{blue}\textbf{Solution:}\par
+}{%
+  \endsolution
+}
+
+\newcommand{\dd}{\, \text{d}}
+
+
+\begin{document}
+
+\title{Mathematical Methods in Bioengineering\\[0.2em]
+}
+\date{April 244, 2026}
+\author{Duvan Henao}
+
+\maketitle
+
+\thispagestyle{fancy}
+\lhead{\includegraphics[width=0.28\textwidth]{logo-UOH}}
+\rhead{First semester of 2026}
+
+\vspace{+0em}
+
+\begin{enumerate}[label=\textbf{P\arabic*.},itemsep=1.5em]
+
+  \item {[\textbf{40 p}]} The lifespan of a specific battery model used in medical devices follows a normal distribution with a mean $\mu = 500$ days and a standard deviation $\sigma = 40$ days. Calculate the percentage of the battery population that is expected to last less than 480 days.
+  \bigskip
+
+  \item  {[\textbf{20 p}]} Write down the proof, using integration by substitution, of the fact that if $X$ is a random variable, $X\sim N(289, 92)$, where $\mu$ and $\sigma$ are real numbers and $\sigma>0$, and if $Z\sim N(0,1)$, then
+  $$
+    P (X < 367) = P\Big (Z < \tfrac{367-289}{92}\Big ).
+  $$
+
+
+
+\end{enumerate}
+
+\end{document}
