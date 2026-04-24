@@ -1,0 +1,12 @@
+Area total N=20: -25388014.89080149
+Valor real N = 20: -12522876.1
+Error relativo N = 20: -102.733%
+Area total N=200: -25049179.76621683
+Valor real N = 200: -12522876.1
+Error relativo N = 200: -100.027%
+Area total N=20000: -25045752.54276165
+Valor real N = 20000: -12522876.1
+Error relativo N = 20000: -100.000%
+Area total N=2000000: -25045752.200034086
+Valor real N = 2000000: -12522876.1
+Error relativo N = 2000000: 100.000%

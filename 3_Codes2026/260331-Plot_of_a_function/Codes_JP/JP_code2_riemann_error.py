@@ -7,6 +7,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 #Requested Riemann's sum
 #Defined integral from 1 to 32 of (11-(x^2)/5)^3 * 2x/5 dx
@@ -60,6 +61,7 @@ for n in n_subdivisions:
     results.append({
         "n": n,
         "dx": dx,
+        "exact": exact,
         "left": total_left,
         "mid": total_mid,
         "right": total_right,
@@ -75,7 +77,8 @@ for n in n_subdivisions:
 df = pd.DataFrame(results)
 
 # Show table
-print(df)
+# print(df)
+df.to_csv('3_Codes2026/260331-Plot_of_a_function/Codes_JP/resultados_Riemann.csv', index=False)
 
 # Plot errors
 plt.figure()
@@ -89,4 +92,31 @@ plt.xlabel("n (subdivisions)")
 #plt.ylabel("Absolute Error")
 plt.ylabel("Relative Error")
 plt.legend()
+plt.show()
+
+
+# 3. Create the plot
+plt.figure(figsize=(10, 6))
+
+# Plot the continuous function
+# 2. Generate smooth curve for the function
+x_curve = np.linspace(point_a, point_b, 1000)
+y_curve = assessed_function(x_curve)
+plt.plot(x_curve, y_curve, 'r-', label='$f(x) = (11 - \\frac{x^2}{5})^3 \\cdot \\frac{2x}{5}$', linewidth=2)
+
+# # Plot the rectangles for the Riemann Sum
+# plt.bar(x_rectangles, y_rectangles, width=dx, align='edge', 
+#         alpha=0.3, color='skyblue', edgecolor='blue', label=f'Riemann Sum ($n={n}$)')
+
+# Formatting the plot
+plt.title("Riemann Sum Visualization", fontsize=14)
+plt.xlabel('$x$', fontsize=12)
+plt.ylabel('$f(x)$', fontsize=12)
+plt.axhline(0, color='black', linewidth=0.8) # X-axis line
+# plt.grid(True, linestyle='--', alpha=0.6)
+plt.legend()
+
+# Show or save the plot
+plt.tight_layout()
+plt.savefig('riemann_sum_plot.png')
 plt.show()
