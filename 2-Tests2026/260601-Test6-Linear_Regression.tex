@@ -1,0 +1,239 @@
+\documentclass[11pt,svgnames,spanish,oneside]{amsart}
+
+\usepackage{hyperref}
+%\hypersetup{colorlinks}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\usepackage{bbm,wasysym,stmaryrd,color,colortbl}
+\usepackage{multimedia}
+\usepackage{cancel}
+\usepackage[normalem]{ulem}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+% \usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+  \pgfplotsset{compat=1.18}
+\usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm,headsep=10pt]{geometry}
+\usepackage{eso-pic}
+\usepackage{url}
+
+% Les principaux ensembles
+\newcommand\N{{\mathbb N}}
+\newcommand\R{{\mathbb R}}
+\newcommand\T{{\mathbb T}}
+\newcommand\C{{\mathbb C}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\Pp{{\mathbb P}}
+\newcommand\Ee{{\mathbb E}}
+\newcommand{\indiq}{{\bf 1}}
+\usepackage{framed}
+\usepackage{xcolor}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+\usepackage{fancyhdr}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%      Document     %%%%%%%%%%%%%%%
+
+% Para escribir las soluciones
+\usepackage{versions}
+\includeversion{solution}
+\excludeversion{solution}
+
+
+\let\epsilon\varepsilon
+\newenvironment{mysolution}{%
+  \solution\color{blue}Sol:
+}{%
+  \endsolution
+}
+
+\newcommand{\dd}{\, \text{d}}
+
+\begin{document}
+
+\title{Mathematical Methods in Bioengineering\\[0.2em]
+Test \# 5
+}
+\date{2 June 2026}
+\author{Duvan Henao}
+
+%\date{\today}
+
+%\pagestyle{plain}
+
+\maketitle
+
+\thispagestyle{fancy}
+\lhead{\includegraphics[width=0.28\textwidth]{logo-UOH}}
+\rhead{First semester, 2026}
+\begin{center}
+\end{center}
+
+%\cfoot{}
+
+\vspace{-2em}
+
+The following data relate the average daily exposure time to UV-B radiation (measured in hours over a biological control period) to the proportion of laboratory mice that develop benign skin lesions.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Daily UV-B Exposure (Hours)} & \textbf{Proportion with Skin Lesions} \\ \hline
+  1.0 & 0.0210 \\ \hline
+  2.0 & 0.0450 \\ \hline
+  3.0 & 0.0880 \\ \hline
+  4.0 & 0.1520 \\ \hline
+  5.0 & 0.2340 \\ \hline
+  6.0 & 0.3550 \\ \hline
+  7.0 & 0.5120 \\ \hline
+  8.0 & 0.6890 \\ \hline
+  9.0 & 0.8210 \\ \hline
+  10.0 & 0.9450 \\ \hline
+\end{tabular}
+\end{center}
+\medskip
+\begin{enumerate}[label=\textbf{P\arabic*.},itemsep=1em]
+  \item \textbf{[13 p]} Adapt the Python code you have on your computer to find the values for $\alpha$ and $\beta$ of the least squares line of best fit $Y = \alpha + \beta x$ for the given dataset, where $x$ represents the daily UV-B exposure hours and $Y$ represents the proportion of mice developing skin lesions.
+
+  \item \textbf{[13 p]} Create a single figure containing both a scatter plot of the original dataset points and a plot of your linear regression model $Y = \alpha + \beta x$.
+
+  \item \textbf{[13 p]} Estimate the probability that a mouse exposed to an average of 6.4 hours of daily UV-B radiation will develop skin lesions.
+
+  \item \textbf{[6 p]} To the figure of problem P2., add a point, ideally with a different colour, showing your projection of problem P3.
+
+  \item \textbf{[15 p]} Suppose you propose a different model: a linear model with the same intercept $\alpha$ as the one in P1--P4, but in which the probability that a mouse develops skin lesions grows 70\% faster with respect to $x$ compared to the original model. Plot this new model in the same figure with the scatter plot of the dataset. Using this new model, estimate the number of hours of daily UV-B exposure required for the probability of developing a skin lesion to reach 97\%.
+
+\end{enumerate}
+
+
+\begin{mysolution}
+    \textbf{P1. Least Squares Regression Analysis:}
+    Let $x$ be the daily UV-B exposure hours and $Y$ be the proportion of mice developing skin lesions. Using the standard formulas for linear regression coefficients $\beta$ (slope) and $\alpha$ (intercept):
+    \[
+    \beta = \frac{n\sum (x_i Y_i) - \sum x_i \sum Y_i}{n\sum x_i^2 - (\sum x_i)^2}, \quad \alpha = \bar{Y} - \beta \bar{x}
+    \]
+    Calculating the summation terms for the $n = 10$ data points yields:
+    \begin{align*}
+    &\sum x_i = 55.0, \quad \sum Y_i = 3.8660, \quad \bar{x} = 5.5, \quad \bar{Y} = 0.3866 \\
+    &\sum x_i^2 = 385.0, \quad \sum x_i Y_i = 30.3630
+    \end{align*}
+    Substituting these values into our coefficient expressions:
+    \[
+    \beta = \frac{10(30.3630) - (55.0)(3.8660)}{10(385.0) - (55.0)^2} = \frac{303.630 - 212.630}{3850.0 - 3025.0} = \frac{91.0}{825.0} \approx 0.110303
+    \]
+    \[
+    \alpha = 0.3866 - (0.110303 \cdot 5.5) = 0.3866 - 0.606667 \approx -0.220067
+    \]
+    Thus, the linear regression model equation is:
+    \[
+    Y = -0.2201 + 0.1103x
+    \]
+
+    \textbf{P2 \& P4. Graphical Representation:}
+    The experimental scatter data, the baseline linear regression curve, the predicted value, and the accelerated alternative model are plotted below.
+
+    \textbf{P3. Model-Based Projection:}
+    Evaluating the model at an exposure time of $x = 6.4$ hours:
+    \[
+    Y = -0.220067 + 0.110303(6.4) = -0.220067 + 0.705939 = 0.485872
+    \]
+    The estimated model-based probability that a mouse develops skin lesions is approximately \textbf{0.4859} (or \textbf{48.59\%}).
+
+    \textbf{P5. Alternative Linear Model with Accelerated Growth:}
+    The alternative configuration establishes an identical vertical intercept $\alpha_{new} = \alpha \approx -0.220067$, but a slope increasing by $70\%$:
+    \[
+    \beta_{new} = \beta \cdot (1 + 0.70) = 0.110303 \cdot 1.7 \approx 0.187515
+    \]
+    This generates the updated structural expression:
+    \[
+    Y_{new} = -0.220067 + 0.187515x
+    \]
+    To find the exposure threshold required for a $97\%$ pathology rate ($Y_{new} = 0.97$), solve for $x$:
+    \[
+    0.97 = -0.220067 + 0.187515x \implies 0.187515x = 1.190067
+    \]
+    \[
+    x = \frac{1.190067}{0.187515} \approx 6.3465
+    \]
+    Under this alternative model, the skin lesion probability reaches $97\%$ at approximately \textbf{6.35 hours} of daily UV-B exposure.
+
+    \begin{center}
+      \begin{tikzpicture}
+      \begin{axis}[
+          axis lines = left,
+          xlabel = {Daily UV-B Exposure ($x$, Hours)},
+          ylabel = {Proportion ($Y$)},
+          xmin = 0, xmax = 11,
+          ymin = -0.3, ymax = 1.1,
+          xtick = {1,2,3,4,5,6,7,8,9,10},
+          ytick = {-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0},
+          grid = both,
+          grid style = {dashed, gray!30},
+          height = 8.5cm, width = 14cm,
+          thick,
+          legend pos = north west
+      ]
+
+      % 1. Scatter plot of the experimental data points
+      \addplot[
+          only marks,
+          mark=*,
+          red,
+          mark size=2.5pt
+      ] coordinates {
+          (1.0, 0.0210) (2.0, 0.0450) (3.0, 0.0880) (4.0, 0.1520) (5.0, 0.2340)
+          (6.0, 0.3550) (7.0, 0.5120) (8.0, 0.6890) (9.0, 0.8210) (10.0, 0.9450)
+      };
+      \addlegendentry{Experimental Data}
+
+      % 2. Plot of the Linear Regression Model Line
+      \addplot [
+          blue,
+          domain = 1:10,
+          samples = 100,
+          ultra thick
+      ] {-0.220067 + 0.110303*x};
+      \addlegendentry{Least Squares Fit ($Y = -0.2201 + 0.1103x$)}
+
+      % 3. Projection point for P3/P4 (x = 6.4, Y approx 0.4859)
+      \addplot[
+          only marks,
+          mark=square*,
+          DarkGreen,
+          mark size=3pt
+      ] coordinates {
+          (6.4, 0.4859)
+      };
+      \addlegendentry{Projection ($x = 6.4$)}
+
+      % 4. New accelerated model line (70% faster growth -> beta_new = 0.187515)
+      \addplot [
+          orange,
+          dashed,
+          domain = 1:7,
+          samples = 100,
+          ultra thick
+      ] {-0.220067 + 0.187515*x};
+      \addlegendentry{70\% Accelerated Growth Model}
+
+      \end{axis}
+      \end{tikzpicture}
+    \end{center}
+
+  \end{mysolution}
+
+
+
+\end{document}
