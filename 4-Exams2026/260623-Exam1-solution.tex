@@ -1,0 +1,337 @@
+\documentclass[11pt,svgnames,spanish,oneside]{amsart}
+
+\usepackage{hyperref}
+%\hypersetup{colorlinks}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\usepackage{bbm,wasysym,stmaryrd,color,colortbl}
+\usepackage{multimedia}
+\usepackage{cancel}
+\usepackage[normalem]{ulem}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+% \usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+  \pgfplotsset{compat=1.18}
+\usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm,headsep=10pt]{geometry}
+\usepackage{eso-pic}
+\usepackage{url}
+
+% Les principaux ensembles
+\newcommand\N{{\mathbb N}}
+\newcommand\R{{\mathbb R}}
+\newcommand\T{{\mathbb T}}
+\newcommand\C{{\mathbb C}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\Pp{{\mathbb P}}
+\newcommand\Ee{{\mathbb E}}
+\newcommand{\indiq}{{\bf 1}}
+\usepackage{framed}
+\usepackage{xcolor}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+\usepackage{fancyhdr}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%      Document     %%%%%%%%%%%%%%%
+
+% Para escribir las soluciones
+\usepackage{versions}
+\includeversion{solution}
+% \excludeversion{solution}
+
+
+\let\epsilon\varepsilon
+\newenvironment{mysolution}{%
+  \bigskip
+
+  \solution\color{blue}Sol:
+}{%
+  \endsolution
+}
+
+\newcommand{\dd}{\, \text{d}}
+
+\begin{document}
+
+\small
+
+\title{Mathematical Methods in Bioengineering\\[0.2em]
+Exam \# 1
+}
+\date{23 June 2026}
+\author{Duvan Henao}
+
+%\date{\today}
+
+%\pagestyle{plain}
+
+\maketitle
+
+\thispagestyle{fancy}
+\lhead{\includegraphics[width=0.28\textwidth]{logo-UOH}}
+\rhead{First semester, 2026}
+\begin{center}
+\end{center}
+
+%\cfoot{}
+
+\vspace{-4em}
+
+\begin{enumerate}[label=\textbf{P\arabic*.},itemsep=1em,leftmargin=*]
+  \item In a bioreactor engineering experiment, the rate of biomass accumulation of a bacterial culture over the first 4 hours is modeled by the function:
+  $$ r(t) = 3t^2 + 2t $$
+  where $t$ is the time in hours ($h$) and $r(t)$ is the growth rate in grams per hour ($g/h$).
+  The total mass of the population accumulated between $t = 0$ and $t = 2$ hours is given by the definite integral:
+  $$ M= \int_{0}^{2} (3t^2 + 2t) \,\dd t $$
+  Calculate the total biomass $M$ (in grams) accumulated at $t = 2$ hours.
+
+  \begin{mysolution}
+  To find the total biomass accumulated, we evaluate the definite integral by finding the antiderivative:
+  $$ M = \int_{0}^{2} (3t^2 + 2t) \,\dd t = \left[ t^3 + t^2 \right]_{0}^{2} $$
+  Substituting the upper and lower limits:
+  $$ M = (2^3 + 2^2) - (0^3 + 0^2) = (8 + 4) - 0 = 12 \text{ grams} $$
+  Thus, the total accumulated biomass at $t = 2$ hours is 12 grams.
+  \end{mysolution}
+
+
+  \medskip
+  \item During a drug delivery assay, the concentration $C(t)$ of a therapeutic agent in a patient's bloodstream (measured in mg/L) as a function of time $t$ (in hours) is modeled by the rational function:
+  $$ C(t) = \frac{8t^2 + 5t}{2t^2 + 3} $$
+  Biomedical engineers are interested in finding the steady-state concentration, which corresponds to the limiting value of the concentration as time approaches infinity.
+    Evaluate the limit:
+    $$ L = \lim_{t \to \infty} \frac{8t^2 + 5t}{2t^2 + 3} $$
+
+  \begin{mysolution}
+  To evaluate the limit as $t \to \infty$, we divide both the numerator and the denominator by the highest power of $t$ in the denominator, which is $t^2$:
+  $$ L = \lim_{t \to \infty} \frac{\frac{8t^2}{t^2} + \frac{5t}{t^2}}{\frac{2t^2}{t^2} + \frac{3}{t^2}} = \lim_{t \to \infty} \frac{8 + \frac{5}{t}}{2 + \frac{3}{t^2}} $$
+  As $t \to \infty$, the terms $\frac{5}{t} \to 0$ and $\frac{3}{t^2} \to 0$. Therefore:
+  $$ L = \frac{8 + 0}{2 + 0} = 4 \text{ mg/L} $$
+  The steady-state concentration of the therapeutic agent is 4 mg/L.
+  \end{mysolution}
+
+  \medskip
+  \item
+  \begin{enumerate}
+    \item In a tissue engineering laboratory, electrospun polymer nanofibers are fabricated to serve as scaffolds for cell growth. The diameter of these fibers, denoted by $Y$, is known to be normally distributed with a mean of $\mu = 500$ nm and a standard deviation of $\sigma = 50$ nm (i.e., $Y \sim N(500, 50)$).
+    Biomedical studies indicate that optimal cell attachment and proliferation occur only on fibers with diameters between $440$ nm and $610$ nm. Estimate the percentage of the fabricated nanofiber population that satisfies the optimal structural criteria for cell growth.
+
+    \begin{mysolution}
+    We want to find the probability $P(440 \le Y \le 610)$. First, we standardize the variables to the standard normal distribution $Z \sim N(0,1)$ using $Z = \frac{Y - \mu}{\sigma}$:
+    $$ Z_1 = \frac{440 - 500}{50} = \frac{-60}{50} = -1.2 $$
+    $$ Z_2 = \frac{610 - 500}{50} = \frac{110}{50} = 2.2 $$
+    Thus, the probability is:
+    $$ P(-1.2 \le Z \le 2.2) = \Phi(2.2) - \Phi(-1.2) $$
+    Using standard normal distribution tables:
+    $$ \Phi(2.2) \approx 0.9861, \quad \Phi(-1.2) \approx 0.1151 $$
+    $$ P(-1.2 \le Z \le 2.2) = 0.9861 - 0.1151 = 0.8710 $$
+    Therefore, approximately 87.10\% of the nanofiber population meets the optimal structural criteria.
+    \end{mysolution}
+
+
+      \bigskip
+    \item Let $X$ be a normally distributed random variable, $X\sim N(\mu, \sigma)$ for some real number $\mu$ and some $\sigma>0$. Define
+    $$ f(x) = \frac{1}{\sqrt{2\pi}\sigma }\exp \Bigg ( - \frac{(x-\mu)^2}{2\sigma^2}\Bigg ).$$
+    In this problem you can use the following (you may assume that these properties are already known):
+      \begin{itemize}
+      \item For any real number $a$,
+      $$
+          P(X<a) = \int_{-\infty}^a f(x) \,\dd x
+      $$
+      \item $\displaystyle \int_{-\infty}^\infty z\, \exp(-z^2/2)\,\dd z =0. $
+      \item $\displaystyle \int_{-\infty}^\infty (x-\mu)\, f(x)\,\dd x  = \int_{-\infty}^\infty x\, f(x)\,\dd x
+          - \mu \int_{-\infty}^\infty\, f(x)\,\dd x.$
+      \item The quantity $\displaystyle \int_{-\infty}^\infty x\, f(x)\,\dd x$ is known as \emph{the expected value of the random variable X}.
+      \end{itemize}
+    \medskip
+    Now you are asked to answer/do the following:
+    \begin{enumerate}
+      \item What is the value of $\displaystyle \int_{-\infty}^{\infty} f(x) \,\dd x$? (An heuristic justification is enough.)
+      \item Using a change of variable, prove that:
+      $$
+        \int_{-\infty}^{\infty} (x-\mu) f(x)\,\dd x = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^\infty z\, \exp(-z^2/2)\,\dd z.
+      $$
+      \item Show how to combine the above properties (even if you were not able to prove them), to establish that
+      \begin{center}
+      \emph{The expected value of $X$ is $\mu$.}
+      \end{center}
+    \end{enumerate}
+    \begin{mysolution}
+      \begin{enumerate}[label=(\alph*)]
+        \item The value of $\displaystyle \int_{-\infty}^{\infty} f(x) \,\dd x = 1$. Heuristically, $f(x)$ is the probability density function (PDF) of a continuous random variable $X$. Since the total probability over the entire real line must equal $100\%$, the total area under the density curve is exactly $1$.
+
+        \item Let us apply the substitution $z = \frac{x-\mu}{\sigma}$. This implies $x - \mu = \sigma z$ and $\dd x = \sigma \dd z$. The limits of integration remain $-\infty$ and $\infty$. Substituting these into the integral gives:
+        $$ \int_{-\infty}^{\infty} (x-\mu) f(x)\,\dd x = \int_{-\infty}^{\infty} (\sigma z) \frac{1}{\sqrt{2\pi}\sigma} \exp \left( - \frac{z^2}{2} \right) \sigma \dd z $$
+        Canceling out $\sigma$ inside the fraction and pulling out constants:
+        $$ = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^\infty z\, \exp(-z^2/2)\,\dd z $$
+
+        \item From property (3) and the definitions given:
+        $$ \int_{-\infty}^\infty (x-\mu)\, f(x)\,\dd x = \text{Expected Value} - \mu \int_{-\infty}^\infty\, f(x)\,\dd x $$
+        Using the result from (b) and property (2), the left-hand side simplifies to:
+        $$ \frac{\sigma}{\sqrt{2\pi}} \cdot (0) = 0 $$
+        Using the result from (a), the second term on the right-hand side simplifies because \mbox{$\int_{-\infty}^\infty f(x)\dd x = 1$.} Thus, the equation becomes:
+        $$ 0 = \text{Expected Value} - \mu \cdot (1) \implies \text{Expected Value} = \mu $$
+      \end{enumerate}
+      \end{mysolution}
+
+  \end{enumerate}
+
+  \medskip
+  \item The logistic growth of a microbial population is described by the differential equation $\frac{\dd N}{\dd t} = rN\left(1 - \frac{N}{K}\right)$. Given the initial condition $N(0) = N_0$, solving this equation for the intrinsic growth rate $r$ yields the following algebraic relationship:
+  $$ r = \frac{1}{t} \ln \left( \frac{K - N_0}{N_0} \right) + \frac{1}{t} \ln \left( \frac{N(t)}{K - N_t} \right) $$
+  Suppose a bioengineer monitors a cell culture population and determines that the carrying capacity is $K = 30$ million cells. The population data at key checkpoints is recorded as follows:
+  \begin{center}
+    $N(0) = 10$ million cells \quad and \quad $N(5) = 22$ million cells.
+  \end{center}
+
+  \begin{enumerate}
+    \item Use the provided formula and the data points at $t = 0$ and $t = 5$ to estimate the exact value of the intrinsic growth rate $r$. \textit{(Leave your answer in terms of natural logarithms or round to four decimal places.)}
+    \item Using your calculated value of $r$ and the explicit solution model, project the expected cell population size at $t = 10$ hours.
+  \end{enumerate}
+    \begin{mysolution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Substituting $t = 5$, $K = 30$, $N_0 = 10$, and $N(5) = 22$ into the formula:
+    $$ r = \frac{1}{5} \ln \left( \frac{30 - 10}{10} \right) + \frac{1}{5} \ln \left( \frac{22}{30 - 22} \right) $$
+    $$ r = \frac{1}{5} \ln(2) + \frac{1}{5} \ln \left( \frac{22}{8} \right) = \frac{1}{5} \left( \ln(2) + \ln(2.75) \right) = \frac{1}{5} \ln(5.5) $$
+    Thus, exactly $r = \frac{\ln(5.5)}{5} \approx 0.3409 \text{ h}^{-1}$.
+
+    \item Using the same formula for $t = 10$, we can solve for $N(10)$:
+    $$ r = \frac{1}{10} \ln(2) + \frac{1}{10} \ln \left( \frac{N(10)}{30 - N(10)} \right) $$
+    Multiply by $10$:
+    $$ 10r = \ln(2) + \ln \left( \frac{N(10)}{30 - N(10)} \right) $$
+    Since $10r = 10 \left( \frac{\ln(5.5)}{5} \right) = 2\ln(5.5) = \ln(5.5^2) = \ln(30.25)$, we substitute this back:
+    $$ \ln(30.25) = \ln \left( \frac{2N(10)}{30 - N(10)} \right) \implies 30.25 = \frac{2N(10)}{30 - N(10)} $$
+    $$ 30.25(30 - N(10)) = 2N(10) \implies 907.5 - 30.25N(10) = 2N(10) $$
+    $$ 907.5 = 32.25N(10) \implies N(10) = \frac{907.5}{32.25} \approx 28.14~\text{million cells}$$
+  \end{enumerate}
+  \end{mysolution}
+
+
+  \medskip
+  \item The current $I$ (in amperes, A) flowing through an AC circuit as a function of time $t$ (in seconds) is given by:
+  $$ I = 120 \sin(30\pi t), \quad t \ge 0 $$
+
+  \begin{enumerate}
+    \item What is the amplitude of the current function?
+    \item What is the period of the current function?
+    \item Sketch the graph of this function over a time interval covering exactly two full periods.
+  \end{enumerate}
+
+    \begin{mysolution}
+  \begin{enumerate}[label=(\alph*)]
+    \item The amplitude is the maximum absolute value of the function, which is given by the coefficient of the sine term: 120 A.
+    \item The angular frequency is $\omega = 30\pi$. The period $T$ is given by:
+    $$ T = \frac{2\pi}{\omega} = \frac{2\pi}{30\pi} = \frac{1}{15} \text{ seconds} \approx 0.0667 \text{ s} $$
+    \item Two full periods correspond to a total time interval of $2T = \frac{2}{15}$ seconds. Below is the representative sketch:
+
+    \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          axis lines = middle,
+          xlabel = {$t$ (s)},
+          ylabel = {$I$ (A)},
+          xmin = 0, xmax = 0.15,
+          ymin = -140, ymax = 140,
+          xtick = {0, 0.0333, 0.0667, 0.1000, 0.1333},
+          xticklabels = {0, $\frac{1}{30}$, $\frac{1}{15}$, $\frac{1}{10}$, $\frac{2}{15}$},
+          ytick = {-120, 120},
+          grid = both,
+          width = 10cm, height = 6cm
+        ]
+        \addplot [domain=0:2/15, samples=200, blue, thick] {120*sin(deg(30*pi*x))};
+      \end{axis}
+    \end{tikzpicture}
+    \end{center}
+  \end{enumerate}
+  \end{mysolution}
+
+
+  \medskip
+  \item
+  \begin{enumerate}
+   \item
+   In a biomechanics study, engineers measure the relationship between the applied tensile force $x$ (in Newtons, N) and the resulting elongation $Y$ (in millimeters, mm) of a novel biocompatible hydrogel sample. The data collected from 4 trials is summari zed in the table below:
+
+  \begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Force } $x_i$ (N) & 1 & 2 & 3 & 4 \\ \hline
+    \textbf{Elongation } $Y_i$ (mm) & 2 & 3 & 5 & 6 \\ \hline
+  \end{tabular}
+  \end{center}
+
+  \medskip
+  We want to fit a linear regression line using the least-squares estimators $\hat{\beta}$ and $\hat{\alpha}$:
+  $$ \hat{\beta} = \frac{\sum_{i=1}^n (x_i - \bar{x})(Y_i - \bar{Y})}{\sum_{i=1}^n (x_i - \bar{x})^2}, \quad \hat{\alpha} = \bar{Y} - \hat{\beta}\bar{x} $$
+  where $\bar{x} = \frac{\sum_{i=1}^n x_i}{n}$ and $\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}$.
+
+  \begin{enumerate}
+    \item Compute the sample means $\bar{x}$ and $\bar{Y}$.
+    \item Determine the exact values of the slope estimator $\hat{\beta}$ and the intercept estimator $\hat{\alpha}$.
+    \item Using the model $\hat{Y} = \hat{\alpha} + \hat{\beta}x$, predict the expected elongation $\hat{Y}$ of the hydrogel sample if a tensile force of $x = 2.5$ N is applied.
+  \end{enumerate}
+
+    \begin{mysolution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Given $n = 4$:
+    $$ \bar{x} = \frac{1 + 2 + 3 + 4}{4} = \frac{10}{4} = \mathbf{2.5} $$
+    $$ \bar{Y} = \frac{2 + 3 + 5 + 6}{4} = \frac{16}{4} = \mathbf{4.0} $$
+
+    \item Let's calculate the components for $\hat{\beta}$:
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      $x_i$ & $Y_i$ & $x_i - \bar{x}$ & $Y_i - \bar{Y}$ & $(x_i - \bar{x})(Y_i - \bar{Y})$ & $(x_i - \bar{x})^2$ \\ \hline
+      1 & 2 & -1.5 & -2.0 & 3.0 & 2.25 \\
+      2 & 3 & -0.5 & -1.0 & 0.5 & 0.25 \\
+      3 & 5 & 0.5 & 1.0 & 0.5 & 0.25 \\
+      4 & 6 & 1.5 & 2.0 & 3.0 & 2.25 \\ \hline
+      $\sum$ & & & & 7.0 & 5.0 \\ \hline
+    \end{tabular}
+    \end{center}
+    $$ \hat{\beta} = \frac{7.0}{5.0} = 1.4 $$
+    $$ \hat{\alpha} = \bar{Y} - \hat{\beta}\bar{x} = 4.0 - (1.4)(2.5) = 4.0 - 3.5 = 0.5 $$
+
+    \item Using the prediction model $\hat{Y} = 0.5 + 1.4x$, for $x = 2.5$ N:
+    $$ \hat{Y} = 0.5 + 1.4(2.5) = 0.5 + 3.5 = 4.0 \text{ mm} $$
+  \end{enumerate}
+  \end{mysolution}
+
+
+  \bigskip
+  \item Let $S_{XY}$ be the quantity defined in the least-squares estimation formula:
+  $$ S_{XY} = \sum_{i=1}^n (x_i - \bar{x})(Y_i - \bar{Y})$$
+  Mathematically prove the identity for the numerator shortcut formula:
+    $$ S_{XY} = \sum_{i=1}^n x_i Y_i - n\bar{x}\bar{Y} $$
+    \textit{(Hint: Expand the binomial expression inside the summation and distribute $\sum$. Recall that $\sum_{i=1}^n x_i = n\bar{x}$ and $\sum_{i=1}^n \bar{Y} = n\bar{Y}$.)}
+
+  \begin{mysolution}
+  Expanding the algebraic expression inside the summation gives:
+  $$ S_{XY} = \sum_{i=1}^n (x_i Y_i - x_i \bar{Y} - \bar{x} Y_i + \bar{x}\bar{Y}) $$
+  Distributing the summation operator $\sum$ across each term:
+  $$ S_{XY} = \sum_{i=1}^n x_i Y_i - \sum_{i=1}^n x_i \bar{Y} - \sum_{i=1}^n \bar{x} Y_i + \sum_{i=1}^n \bar{x}\bar{Y} $$
+  Since $\bar{x}$ and $\bar{Y}$ are constants relative to the summation index $i$, they can be factored out:
+  $$ S_{XY} = \sum_{i=1}^n x_i Y_i - \bar{Y} \sum_{i=1}^n x_i - \bar{x} \sum_{i=1}^n Y_i + n\bar{x}\bar{Y} $$
+  Using the hint properties $\sum_{i=1}^n x_i = n\bar{x}$ and $\sum_{i=1}^n Y_i = n\bar{Y}$, we substitute these values:
+  $$ S_{XY} = \sum_{i=1}^n x_i Y_i - \bar{Y}(n\bar{x}) - \bar{x}(n\bar{Y}) + n\bar{x}\bar{Y} $$
+  $$ S_{XY} = \sum_{i=1}^n x_i Y_i - n\bar{x}\bar{Y} - n\bar{x}\bar{Y} + n\bar{x}\bar{Y} $$
+  Simplifying the final constant terms yields the desired identity:
+  $$ S_{XY} = \sum_{i=1}^n x_i Y_i - n\bar{x}\bar{Y} $$
+  \end{mysolution}
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
