@@ -1,0 +1,213 @@
+\documentclass[11pt,svgnames,spanish,oneside]{amsart}
+
+\usepackage{hyperref}
+%\hypersetup{colorlinks}
+\usepackage{hypcap}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\usepackage{bbm,wasysym,stmaryrd,color,colortbl}
+\usepackage{multimedia}
+\usepackage{cancel}
+\usepackage[normalem]{ulem}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+% \usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+  \pgfplotsset{compat=1.18}
+\usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm,headsep=10pt]{geometry}
+\usepackage{eso-pic}
+\usepackage{url}
+
+% Les principaux ensembles
+\newcommand\N{{\mathbb N}}
+\newcommand\R{{\mathbb R}}
+\newcommand\T{{\mathbb T}}
+\newcommand\C{{\mathbb C}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\Pp{{\mathbb P}}
+\newcommand\Ee{{\mathbb E}}
+\newcommand{\indiq}{{\bf 1}}
+\usepackage{framed}
+\usepackage{xcolor}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+\usepackage{fancyhdr}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%      Document     %%%%%%%%%%%%%%%
+
+% Para escribir las soluciones
+\usepackage{versions}
+\includeversion{solution}
+\excludeversion{solution}
+
+
+\let\epsilon\varepsilon
+\newenvironment{mysolution}{%
+  \solution\color{blue}Sol:
+}{%
+  \endsolution
+}
+
+\newcommand{\dd}{\, \text{d}}
+
+\begin{document}
+
+\small
+
+\title{Mathematical Methods in Bioengineering\\[0.2em]
+Exam \# 1
+}
+\date{23 June 2026}
+\author{Duvan Henao}
+
+%\date{\today}
+
+%\pagestyle{plain}
+
+\maketitle
+
+\thispagestyle{fancy}
+\lhead{\includegraphics[width=0.28\textwidth]{logo-UOH}}
+\rhead{First semester, 2026}
+\begin{center}
+\end{center}
+
+%\cfoot{}
+
+\vspace{-4em}
+
+\begin{enumerate}[label=\textbf{P\arabic*.},itemsep=1em]
+  \item In a bioreactor engineering experiment, the rate of biomass accumulation of a bacterial culture over the first 4 hours is modeled by the function:
+  $$ r(t) = 3t^2 + 2t $$
+  where $t$ is the time in hours ($h$) and $r(t)$ is the growth rate in grams per hour ($g/h$).
+
+  The total mass of the population accumulated between $t = 0$ and $t = 2$ hours is given by the definite integral:
+  $$ M = \int_{0}^{2} (3t^2 + 2t) \,\dd t $$
+
+  Calculate the total biomass $M$ (in grams) accumulated at $t = 2$ hours.
+
+  \medskip
+  \item During a drug delivery assay, the concentration $C(t)$ of a therapeutic agent in a patient's bloodstream (measured in mg/L) as a function of time $t$ (in hours) is modeled by the rational function:
+  $$ C(t) = \frac{8t^2 + 5t}{2t^2 + 3} $$
+
+  Biomedical engineers are interested in finding the steady-state concentration, which corresponds to the limiting value of the concentration as time approaches infinity.
+    Evaluate the limit:
+    $$ L = \lim_{t \to \infty} \frac{8t^2 + 5t}{2t^2 + 3} $$
+
+
+  \medskip
+  \item
+  \begin{enumerate}
+    \item In a tissue engineering laboratory, electrospun polymer nanofibers are fabricated to serve as scaffolds for cell growth. The diameter of these fibers, denoted by $Y$, is known to be normally distributed with a mean of $\mu = 500$ nm and a standard deviation of $\sigma = 50$ nm (i.e., $Y \sim N(500, 50)$).
+
+    Biomedical studies indicate that optimal cell attachment and proliferation occur only on fibers with diameters between $440$ nm and $610$ nm. Estimate the percentage of the fabricated nanofiber population that satisfies the optimal structural criteria for cell growth.
+
+      \bigskip
+    \item Let $X$ be a normally distributed random variable, $X\sim N(\mu, \sigma)$ for some real number $\mu$ and some $\sigma>0$. Define
+    $$ f(x) = \frac{1}{\sqrt{2\pi}\sigma }\exp \Bigg ( - \frac{(x-\mu)^2}{2\sigma^2}\Bigg ).$$
+    In this problem you can use the following (you may assume that these properties are already known):
+      \begin{itemize}
+      \item For any real number $a$,
+      $$
+          P(X<a) = \int_{-\infty}^a f(x) \,\dd x
+      $$
+      \item $\displaystyle \int_{-\infty}^\infty z\, \exp(-z^2/2)\,\dd z =0. $
+      \item $\displaystyle \int_{-\infty}^\infty (x-\mu)\, f(x)\,\dd x  = \int_{-\infty}^\infty x\, f(x)\,\dd x
+          - \mu \int_{-\infty}^\infty\, f(x)\,\dd x.$
+      \item The quantity $\displaystyle \int_{-\infty}^\infty x\, f(x)\,\dd x$ is known as \emph{the expected value of the random variable X}.
+      \end{itemize}
+    \medskip
+    Now you are asked to answer/do the following:
+    \begin{enumerate}
+      \item What is the value of $\displaystyle \int_{-\infty}^{\infty} f(x) \,\dd x$? (An heuristic justification is enough.)
+      \item Using a change of variable, prove that:
+      $$
+        \int_{-\infty}^{\infty} (x-\mu) f(x)\,\dd x = \int_{-\infty}^\infty z\, \exp(-z^2/2)\,\dd z.
+      $$
+      \item Show how to combine the above properties (even if you were not able to prove them), to establish that
+      \begin{center}
+      \emph{The expected value of $X$ is $\mu$.}
+      \end{center}
+      \end{enumerate}
+  \end{enumerate}
+
+  \medskip
+  \item The logistic growth of a microbial population is described by the differential equation $\frac{\dd N}{\dd t} = rN\left(1 - \frac{N}{K}\right)$. Given the initial condition $N(0) = N_0$, solving this equation for the intrinsic growth rate $r$ yields the following algebraic relationship:
+  $$ r = \frac{1}{t} \ln \left( \frac{K - N_0}{N_0} \right) + \frac{1}{t} \ln \left( \frac{N(t)}{K - N_t} \right) $$
+
+  Suppose a bioengineer monitors a cell culture population and determines that the carrying capacity is $K = 30$ million cells. The population data at key checkpoints is recorded as follows:
+  \begin{center}
+    $N(0) = 10$ million cells \quad and \quad $N(5) = 22$ million cells.
+  \end{center}
+
+  \begin{enumerate}
+    \item Use the provided formula and the data points at $t = 0$ and $t = 5$ to estimate the exact value of the intrinsic growth rate $r$. \textit{(Leave your answer in terms of natural logarithms or round to four decimal places.)}
+    \item Using your calculated value of $r$ and the explicit solution model, project the expected cell population size at $t = 10$ hours.
+  \end{enumerate}
+
+  \medskip
+  \item The current $I$ (in amperes, A) flowing through an AC circuit as a function of time $t$ (in seconds) is given by:
+  $$ I = 120 \sin(30\pi t), \quad t \ge 0 $$
+
+  \begin{enumerate}
+    \item What is the amplitude of the current function?
+    \item What is the period of the current function?
+    \item Sketch the graph of this function over a time interval covering exactly two full periods.
+  \end{enumerate}
+
+  \medskip
+  \item
+  \begin{enumerate}
+   \item
+   In a biomechanics study, engineers measure the relationship between the applied tensile force $x$ (in Newtons, N) and the resulting elongation $Y$ (in millimeters, mm) of a novel biocompatible hydrogel sample. The data collected from 4 trials is summari zed in the table below:
+
+  \begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Force } $x_i$ (N) & 1 & 2 & 3 & 4 \\ \hline
+    \textbf{Elongation } $Y_i$ (mm) & 2 & 3 & 5 & 6 \\ \hline
+  \end{tabular}
+  \end{center}
+
+  \medskip
+  We want to fit a linear regression line using the least-squares estimators $\hat{\beta}$ and $\hat{\alpha}$:
+  $$ \hat{\beta} = \frac{\sum_{i=1}^n (x_i - \bar{x})(Y_i - \bar{Y})}{\sum_{i=1}^n (x_i - \bar{x})^2}, \quad \hat{\alpha} = \bar{Y} - \hat{\beta}\bar{x} $$
+  where $\bar{x} = \frac{\sum_{i=1}^n x_i}{n}$ and $\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}$.
+
+  \begin{enumerate}
+    \item Compute the sample means $\bar{x}$ and $\bar{Y}$.
+    \item Determine the exact values of the slope estimator $\hat{\beta}$ and the intercept estimator $\hat{\alpha}$.
+    \item using the model $\hat{Y} = \hat{\alpha} + \hat{\beta}x$Predict the expected elongation $\hat{Y}$ of the hydrogel sample if a tensile force of $x = 2.5$ N is applied .
+  \end{enumerate}
+
+  \bigskip
+  \item Let $S_{XY}$ be the quantity defined in the least-squares estimation formula:
+  $$ S_{XY} = \sum_{i=1}^n (x_i - \bar{x})(Y_i - \bar{Y})$$
+  Mathematically prove the identity for the numerator shortcut formula:
+    $$ S_{XY} = \sum_{i=1}^n x_i Y_i - n\bar{x}\bar{Y} $$
+    \textit{(Hint: Expand the binomial expression inside the summation and distribute $\sum$. Recall that $\sum_{i=1}^n x_i = n\bar{x}$ and $\sum_{i=1}^n \bar{Y} = n\bar{Y}$.)}
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\begin{mysolution}
+
+
+
+  \end{mysolution}
+
+
+
+\end{document}

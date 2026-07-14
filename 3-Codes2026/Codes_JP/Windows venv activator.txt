@@ -1,0 +1,10 @@
+RUN IN CMD
+
+Establish directory 
+cd "A:\Desktop\MathMethods repo\Mathematical-methods-in-bioengineering\3_Codes2026\Codes_JP"
+
+Create the venv
+python -m venv .venv
+
+Activate the venv
+.venv\Scripts\activate.bat
